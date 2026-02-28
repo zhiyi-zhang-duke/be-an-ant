@@ -6,6 +6,7 @@ import { registerPlan } from './commands/plan'
 import { registerRetro } from './commands/retro'
 import { registerLog } from './commands/log'
 import { registerConfig } from './commands/config'
+import { registerOnboard } from './commands/onboard'
 
 const program = new Command()
 
@@ -19,5 +20,6 @@ registerIntake(program)
 registerPlan(program)
 registerRetro(program)
 registerLog(program)
+registerOnboard(program)
 
 program.parse()

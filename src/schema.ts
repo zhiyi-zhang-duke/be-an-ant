@@ -30,6 +30,7 @@ export const ProfileSchema = z.object({
     linkedin: z.string().optional(),
     writing: z.array(z.string()).optional(),
   }),
+  dimensionContext: z.record(z.string(), z.string()).optional(),
   createdAt: z.string(),
   updatedAt: z.string(),
 })

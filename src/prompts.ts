@@ -19,6 +19,47 @@ The seven dimensions you evaluate across:
 
 When ranking, weight heavily toward the dimensions with the most leverage given their current gaps.`
 
+export const DIMENSIONS = [
+  'current-role',
+  'interviews',
+  'projects',
+  'visibility',
+  'network',
+  'credentials',
+  'budget',
+] as const
+
+export type Dimension = typeof DIMENSIONS[number]
+
+const DIMENSION_DESCRIPTIONS: Record<Dimension, string> = {
+  'current-role':  'Your day job — what you do, how AI-adjacent it is, and whether it is building your candidacy',
+  'interviews':    'Your readiness for technical, behavioral, and system-design interviews at Anthropic',
+  'projects':      'Personal or side projects you have shipped or are building that signal relevant skills',
+  'visibility':    'Your GitHub activity, LinkedIn presence, writing, and search footprint',
+  'network':       'Who you know at Anthropic or adjacent, warm contacts, and outreach you have done',
+  'credentials':   'Degrees, certifications, and courses you have completed or are pursuing',
+  'budget':        'Monthly budget available and what you are currently spending on this effort',
+}
+
+export function onboardSystemPrompt(dimension: Dimension): string {
+  return `${TOOL_IDENTITY}
+
+You are helping the user add context for one specific dimension of their career development plan: "${dimension}".
+
+What this dimension covers: ${DIMENSION_DESCRIPTIONS[dimension]}
+
+The user will provide a free-form text dump — anything they know or want you to know about this dimension. It may be messy, stream-of-consciousness, or incomplete. Your job is to distill it into a concise, factual summary (3–6 sentences) that captures the most decision-relevant information for planning purposes.
+
+When you have read their input, output ONLY a summary wrapped in <context> tags. No preamble, no commentary outside the tags.
+
+Example output format:
+<context>User has been at their current company for 3 years as a senior engineer. The team recently moved to using LLMs for internal tooling, giving some relevant exposure. Manager is supportive but unaware of the Anthropic goal. No public-facing AI work yet.</context>`
+}
+
+export function dimensionLabel(dimension: Dimension): string {
+  return DIMENSION_DESCRIPTIONS[dimension]
+}
+
 export function intakeSystemPrompt(): string {
   return `${TOOL_IDENTITY}
 
@@ -101,7 +142,7 @@ Do not include anything outside the <plan> and <changes> blocks in your final me
 }
 
 function profileContext(profile: Profile): string {
-  return `USER PROFILE:
+  const base = `USER PROFILE:
 Role: ${profile.currentRole.title} — ${profile.currentRole.description}
 AI-adjacent: ${profile.currentRole.aiAdjacent ? 'yes' : 'no'}
 Target roles: ${profile.targetRoles.join(', ')}
@@ -112,6 +153,15 @@ Monthly budget: $${profile.constraints.monthlyBudget}
 Credentials: ${profile.credentials.join(', ') || 'none listed'}
 GitHub: ${profile.links.github ?? 'not provided'}
 LinkedIn: ${profile.links.linkedin ?? 'not provided'}`
+
+  const ctx = profile.dimensionContext
+  if (!ctx || Object.keys(ctx).length === 0) return base
+
+  const contextBlock = Object.entries(ctx)
+    .map(([dim, summary]) => `  [${dim}] ${summary}`)
+    .join('\n')
+
+  return `${base}\n\nDIMENSION CONTEXT (user-provided):\n${contextBlock}`
 }
 
 function planContext(plan: Plan): string {

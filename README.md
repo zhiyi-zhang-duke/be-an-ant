@@ -8,7 +8,9 @@ The name comes from the idea that ants don't overestimate the distance between w
 
 ## What This Is
 
-`be-an-ant` is a CLI tool that uses Claude as a structured career coach. It runs intake interviews, builds a prioritized action plan across every relevant dimension of career growth, and holds weekly retrospectives to track progress and recalibrate.
+`be-an-ant` is a CLI tool that uses an AI model as a structured career coach. It runs intake interviews, builds a prioritized action plan across every relevant dimension of career growth, and holds weekly retrospectives to track progress and recalibrate.
+
+It supports multiple LLM providers — Claude (Anthropic), GPT-4o (OpenAI), and Gemini (Google) — configurable at startup.
 
 It is not motivational. It is operational.
 
@@ -66,7 +68,7 @@ Before generating a plan, the tool interviews you across four areas:
 3. **Existing skills** — What you are strong in, what you can demonstrate, what is genuinely differentiated about you
 4. **Starting constraints** — Time available per week, budget for courses or tools, credentials or degrees you currently hold or lack
 
-Claude uses this to build a profile that persists across sessions.
+Your chosen model uses this to build a profile that persists across sessions.
 
 ---
 
@@ -94,9 +96,23 @@ Every week, `retro` mode asks:
 - What got in the way?
 - What changed in your situation (role, budget, access, timeline)?
 
-Claude uses that to score progress, update the plan, and surface what to focus on next week.
+The model uses that to score progress, update the plan, and surface what to focus on next week.
 
 Session summaries are written to `sessions/` so there is a running record of where you started and where you are.
+
+---
+
+## LLM Configuration
+
+`be-an-ant` works with any of the following providers. Set your preferred model via environment variable or a config file at `~/.be-an-ant/config.json`.
+
+| Provider | Models supported | Env var |
+|---|---|---|
+| Anthropic (default) | claude-opus-4, claude-sonnet-4 | `ANTHROPIC_API_KEY` |
+| OpenAI | gpt-4o, gpt-4o-mini | `OPENAI_API_KEY` |
+| Google | gemini-2.0-flash, gemini-1.5-pro | `GOOGLE_API_KEY` |
+
+If no model is specified, the tool defaults to Claude.
 
 ---
 

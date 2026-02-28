@@ -152,11 +152,19 @@ Before your first session, collect the following. You will be asked about all of
 
 ## Progress Tracking
 
-Sessions are stored locally in `sessions/YYYY-MM-DD.md`. Each file contains:
+Sessions are stored in **Firebase Firestore**, scoped to your user ID. Each session record contains:
 
 - The mode run (`intake`, `plan`, `retro`)
 - Key outputs (updated plan, scores, action items)
 - A brief summary of what changed from the previous session
+
+Data syncs automatically across devices. No manual file management.
+
+---
+
+## Technical Design
+
+The full architecture — stack, Firebase data model, Firestore collections, project structure, and system prompt strategy — is documented in [`docs/architecture.md`](docs/architecture.md).
 
 ---
 

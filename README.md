@@ -74,15 +74,17 @@ Your chosen model uses this to build a profile that persists across sessions.
 
 ## Action Plan
 
-The plan is a ranked, living document. Claude scores and prioritizes across these dimensions:
+The plan is a ranked, living document. Claude scores and prioritizes across seven dimensions. Each dimension has its own sub-document describing how it is evaluated, what improvement looks like, and how retros track it.
 
-1. **Current job performance** — Are you doing work that strengthens your candidacy? What specifically should change?
-2. **Interview readiness** — Technical skills, system design, behavioral responses. What needs work and how to assess it.
-3. **Personal projects** — Building something novel enough to earn organic recognition. What to build, how to develop and document it, and how to surface it to the right people.
-4. **Online visibility** — LinkedIn, GitHub, Medium, blogs. Where you are findable, what story your profile tells.
-5. **Network and access** — Who you already know or have access to that may be relevant. How to use those connections without wasting them.
-6. **Credentials** — Certifications, courses, or degrees worth pursuing given your specific gap areas.
-7. **Budget allocation** — How to distribute available spend across the above for maximum impact.
+| # | Dimension | Description |
+|---|---|---|
+| 1 | [Current Role](docs/dimensions/current-role.md) | Is your day job building your candidacy or just filling time? |
+| 2 | [Interview Readiness](docs/dimensions/interviews.md) | Technical depth, behavioral stories, communication under pressure |
+| 3 | [Personal Projects](docs/dimensions/projects.md) | Shipping something real that signals the right things |
+| 4 | [Online Visibility](docs/dimensions/visibility.md) | GitHub, LinkedIn, writing — what people find when they look you up |
+| 5 | [Network and Access](docs/dimensions/network.md) | Who you know, who they know, and how to use it without burning it |
+| 6 | [Credentials](docs/dimensions/credentials.md) | What is worth pursuing vs. resume decoration |
+| 7 | [Budget](docs/dimensions/budget.md) | Matching spend to priority, not anxiety |
 
 Priorities are not fixed. They shift based on what you report each week.
 

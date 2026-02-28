@@ -44,3 +44,25 @@ Each week you report:
 - Whether anything you shared got external engagement
 
 Visibility work compounds slowly. The model will flag if you have gone multiple weeks without anything public-facing.
+
+---
+
+## CLI Command: `ant audit`
+
+Pulls live data from public APIs to generate a scored visibility report card. No authentication required for public profiles — it reads what anyone else would see.
+
+```
+ant audit --github yourhandle
+ant audit --github yourhandle --linkedin yourprofile
+```
+
+**GitHub audit checks:**
+- Profile README exists and is non-trivial
+- Pinned repos are current, relevant, and have real READMEs
+- Commit activity over the past 90 days
+- Star and fork counts on AI-adjacent repos
+- Whether your most-viewed repos tell the right story
+
+**Output:** A scored report card per platform (0–10) with a prioritized list of specific next actions ranked by estimated effort vs. visibility impact. Re-run anytime to track improvement.
+
+LinkedIn audit is limited to profile completeness checks since LinkedIn's public data is restricted. It prompts you to self-report headline, summary, and recency rather than fetching live.

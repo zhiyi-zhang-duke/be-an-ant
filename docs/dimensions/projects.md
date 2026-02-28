@@ -47,3 +47,21 @@ Each week you report:
 - Whether anything changed in scope or direction
 
 The model tracks shipping velocity. If weeks pass without visible progress, it will escalate this dimension's priority and suggest ways to reduce scope to something shippable.
+
+---
+
+## CLI Command: `ant velocity`
+
+Points at a local git repository and reads the actual commit history to calculate shipping velocity — not what you say you did, but what the repo shows. Honest in a way retro self-reporting isn't.
+
+```
+ant velocity
+ant velocity ~/projects/openclaw
+ant velocity --all
+```
+
+**Output:** Days since last commit, commit frequency over the past 30 days, trend (accelerating / stable / stalling), and a trajectory estimate based on current pace. Also flags stall signals in commit messages — high frequency of `wip`, `temp`, `fix typo`, or consecutive commits with no substance.
+
+`--all` scans all registered projects and outputs a side-by-side velocity comparison.
+
+Projects are registered during intake or with `ant velocity --add ~/path/to/project`. The retro command pulls velocity data automatically — you don't have to self-report project progress if your repo is registered.

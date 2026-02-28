@@ -50,3 +50,24 @@ Each week you report:
 - Whether there is something you need to spend on that you have been avoiding
 
 Budget is the lowest-volatility dimension. It rarely changes week to week, but the model will prompt you if your priorities have shifted and your spending has not kept up.
+
+---
+
+## CLI Command: `ant spend`
+
+Tracks what you are spending and whether it is aligned with what is currently highest priority in your plan. Catches the most common failure mode: spending on low-priority dimensions while high-priority ones go unfunded.
+
+```
+ant spend log --category course --amount 49 --note "FastAI part 2"
+ant spend log --category api --amount 20 --note "Anthropic API credits"
+ant spend report
+ant spend report --month 2025-03
+```
+
+**Categories:** `api`, `course`, `tools`, `community`, `other`
+
+**`log`:** Records a purchase with category, amount, and an optional note. Takes under 10 seconds.
+
+**`report`:** Shows month-to-date spend by category alongside the current priority ranking from your plan. Flags misalignment — if interviews are your top priority and you have spent nothing on practice but $80 on courses for a lower-priority credential gap, it surfaces that explicitly.
+
+Spend data is stored locally in `~/.be-an-ant/spend.json`. The retro command references it automatically.

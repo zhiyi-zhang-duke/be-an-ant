@@ -45,3 +45,26 @@ Each week you report:
 - How it felt, what broke down, what improved
 
 The model tracks your practice frequency and adjusts the plan if you're falling behind on reps. It will also suggest specific problem areas to drill based on your profile and target role.
+
+---
+
+## CLI Command: `ant drill`
+
+Runs an interactive mock interview session in the terminal. You pick a type, respond to questions, and receive structured feedback. Each session is logged automatically so retros can show your rep count and surface weeks with no practice.
+
+```
+ant drill behavioral
+ant drill system-design
+ant drill technical
+ant drill why-anthropic
+```
+
+**Behavioral:** Asks competency-based questions (leadership, conflict, ambiguity, failure) and evaluates your answer for specificity, structure, and what it reveals about you. Helps surface your best stories and identify which competencies you have weak coverage for.
+
+**System design:** Poses an open-ended design problem, walks through it interactively, and evaluates your ability to handle ambiguity, drive toward decisions, and communicate tradeoffs.
+
+**Technical:** Targeted questions based on your gap profile — what your intake identified as weak areas for your specific target role.
+
+**Why Anthropic:** Evaluates your answer to the most important non-technical question. Flags if it sounds generic, rehearsed, or unconvincing.
+
+Sessions are stored in `sessions/drills/` with date, type, duration, and model feedback.

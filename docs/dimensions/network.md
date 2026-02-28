@@ -46,3 +46,21 @@ Each week you report:
 - Whether any existing relationships moved forward
 
 The model does not push you to hustle your contacts. It tracks whether your network is slowly expanding or stagnant, and adjusts the plan accordingly.
+
+---
+
+## CLI Command: `ant contact`
+
+A lightweight relationship ledger — not a CRM. Tracks who you know, how you know them, and when you last interacted. Surfaces natural touchpoints based on what you're currently building.
+
+```
+ant contact add
+ant contact log
+ant contact suggest
+```
+
+**`add`:** Records a person interactively — name, how you know them, tags (anthropic-employee, former-colleague, community-member, recruiter), and any relevant context. Stored locally in `~/.be-an-ant/contacts.json`.
+
+**`log`:** Records an interaction — a conversation, a share of your work, a reply to something they posted. Keeps a timestamped history without requiring detail.
+
+**`suggest`:** Given your contact list and current plan priorities, surfaces one or two people worth a genuine touchpoint this week. Suggestions are anchored to something real — sharing something you just shipped, not a cold ask. Will not suggest the same person two weeks in a row.

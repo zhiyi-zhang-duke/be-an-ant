@@ -44,3 +44,19 @@ Each week you report:
 - Whether anything changed in your role, team, or responsibilities
 
 The model uses this to update its estimate of how much your current job is helping vs. how much you need to compensate with outside work.
+
+---
+
+## CLI Command: `ant gap`
+
+Runs an on-demand comparison between your current role and your target role. Can also accept a raw job description to evaluate fit against any specific listing.
+
+```
+ant gap
+ant gap --jd path/to/job-description.txt
+ant gap --jd "paste raw job description text"
+```
+
+**Output:** Three ranked lists — alignment gaps (skills your job doesn't exercise), hidden assets (things you're doing that matter more than you realize), and leverage opportunities (specific actions to steer your current work toward more relevant ground). Scores each item by estimated impact on candidacy.
+
+Run this anytime — not just during intake. Use it when a new Anthropic role posts, when your responsibilities shift, or when you want a fresh read on where you stand.

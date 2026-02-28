@@ -42,19 +42,37 @@ This is the starting context seeded into every session. The intake interview exp
 
 ## How It Works
 
-There are four modes:
+### Core Commands
+
+These run the main loop of the tool.
 
 | Command | Description |
 |---|---|
-| `intake` | One-time structured interview to build your baseline profile |
-| `plan` | Generates or updates a ranked action plan based on your profile |
-| `retro` | Weekly retrospective — reviews progress, adjusts priorities |
-| `log` | View session history and progress over time |
+| `ant intake` | One-time structured interview to build your baseline profile |
+| `ant plan` | Generates or updates a ranked action plan based on your profile |
+| `ant retro` | Weekly retrospective — reviews progress, adjusts priorities |
+| `ant log` | View session history and progress over time |
+
+### Dimension Commands
+
+Each command maps to one of the seven plan dimensions. Run these on demand — between retros, before decisions, or whenever you want a sharper read on a specific area.
+
+| Command | Dimension | What It Does |
+|---|---|---|
+| `ant gap` | Current Role | Compares your role against your target role — gaps, hidden assets, leverage opportunities |
+| `ant drill` | Interview Readiness | Interactive mock interview sessions — behavioral, system design, technical, why-Anthropic |
+| `ant velocity` | Personal Projects | Reads your git history to report actual shipping velocity, not self-reported progress |
+| `ant audit` | Online Visibility | Pulls live GitHub data to score your public profile and surface specific next actions |
+| `ant contact` | Network | Relationship ledger — log interactions, get suggestions for genuine touchpoints |
+| `ant worth-it` | Credentials | Evaluates a credential or course for ROI before you commit time or money |
+| `ant spend` | Budget | Tracks spend by category and flags misalignment with current plan priorities |
 
 ### Workflow
 
 ```
 intake → plan → [weekly retro → recalibrate plan] → repeat
+             ↕
+   dimension commands run anytime
 ```
 
 ---

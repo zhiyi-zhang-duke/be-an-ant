@@ -45,3 +45,25 @@ Each week you report:
 - Whether the credential is still worth pursuing
 
 Credentials are tracked loosely. They matter less week-to-week than projects or interview prep, and the model will deprioritize this dimension unless you are in active pursuit of something specific.
+
+---
+
+## CLI Command: `ant worth-it`
+
+Evaluates a credential or course you are considering before you commit time or money to it. Fast — this is a 60-second check, not a full session.
+
+```
+ant worth-it "DeepLearning.AI ML specialization"
+ant worth-it "AWS Solutions Architect cert"
+ant worth-it "Fast.AI practical deep learning"
+```
+
+**Evaluation factors:**
+- Does this fill a gap identified in your intake profile?
+- Will an Anthropic hiring manager care about this, or is it neutral?
+- What is the estimated time cost, and what else could you do with that time?
+- Is there a faster or cheaper way to demonstrate the same skill?
+
+**Output:** A verdict — pursue, deprioritize, or "only after X" — with a concise rationale. No hedging. If it's low ROI, it says so directly.
+
+Run this before enrolling in anything. The most common pattern it catches: pursuing a credential to feel like you're making progress when a shipped project would do more.

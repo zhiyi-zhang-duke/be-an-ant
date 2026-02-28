@@ -14,6 +14,30 @@ It is not motivational. It is operational.
 
 ---
 
+## Baseline Profile
+
+This is the starting context seeded into every session. The intake interview expands on this and fills in gaps.
+
+**Current role:** Senior Software Engineer
+
+**Target roles (primary):**
+- Software Engineer, Claude Code
+- Software Engineer, Agent SDK
+
+**Target roles (also considering):**
+- Member of Technical Staff
+- Software Engineer, Claude Developer Platform
+- Growth Engineer
+
+**What draws me to Anthropic:**
+- The AI work is genuinely novel — problems that haven't been solved before
+- I want to work where the problems are still being defined, not just executed on
+- The caliber of people. I want to be around engineers and researchers who are AI-native by default
+- The safety mission aligns with how I think about AI and ethics
+- Specifically interested in AI tools for AI development — building the infrastructure that accelerates AI work itself
+
+---
+
 ## How It Works
 
 There are four modes:

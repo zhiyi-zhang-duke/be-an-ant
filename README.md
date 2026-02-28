@@ -52,7 +52,7 @@ The plan is a ranked, living document. Claude scores and prioritizes across thes
 
 1. **Current job performance** — Are you doing work that strengthens your candidacy? What specifically should change?
 2. **Interview readiness** — Technical skills, system design, behavioral responses. What needs work and how to assess it.
-3. **Personal projects** — Specifically [Openclaw](https://github.com/zhiyi-zhang-duke/openclaw), an open-source project that enables AI agents to control a VM. How to develop it, document it, and surface it to the right people.
+3. **Personal projects** — Building something novel enough to earn organic recognition. What to build, how to develop and document it, and how to surface it to the right people.
 4. **Online visibility** — LinkedIn, GitHub, Medium, blogs. Where you are findable, what story your profile tells.
 5. **Network and access** — Who you already know or have access to that may be relevant. How to use those connections without wasting them.
 6. **Credentials** — Certifications, courses, or degrees worth pursuing given your specific gap areas.

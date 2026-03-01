@@ -1,3 +1,7 @@
+node_modules/
+dist/
+*.js.map
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

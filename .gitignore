@@ -1,6 +1,10 @@
+# Node.js
 node_modules/
 dist/
 *.js.map
+
+# Local config
+.be-an-ant/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

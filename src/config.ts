@@ -27,7 +27,7 @@ export function getConfig(): Config | null {
 
 export function saveConfig(config: Config): void {
   fs.mkdirSync(CONFIG_DIR, { recursive: true })
-  fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf8')
+  fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), { encoding: 'utf8', mode: 0o600 })
 }
 
 export function requireConfig(): Config {

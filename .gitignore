@@ -1,3 +1,17 @@
+# Node.js
+node_modules/
+dist/
+
+# Local config (contains API keys)
+~/.be-an-ant/
+
+# Node.js
+node_modules/
+dist/
+
+# Local config
+.be-an-ant/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

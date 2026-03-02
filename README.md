@@ -10,7 +10,7 @@ The name comes from the idea that ants don't overestimate the distance between w
 
 `be-an-ant` is a CLI tool that uses an AI model as a structured career coach. It runs intake interviews, builds a prioritized action plan across every relevant dimension of career growth, and holds weekly retrospectives to track progress and recalibrate.
 
-It supports multiple LLM providers — Claude (Anthropic), GPT-4o (OpenAI), and Gemini (Google) — configurable at startup.
+It supports Anthropic (Claude) and Google (Gemini) as AI backends. You choose during `ant config`.
 
 It is not motivational. It is operational.
 
@@ -48,6 +48,7 @@ These run the main loop of the tool.
 
 | Command | Description |
 |---|---|
+| `ant config` | One-time setup — choose your LLM provider, save your API key and Firebase credentials |
 | `ant intake` | One-time structured interview to build your baseline profile |
 | `ant plan` | Generates or updates a ranked action plan based on your profile |
 | `ant retro` | Weekly retrospective — reviews progress, adjusts priorities |
@@ -92,7 +93,7 @@ Your chosen model uses this to build a profile that persists across sessions.
 
 ## Action Plan
 
-The plan is a ranked, living document. Claude scores and prioritizes across seven dimensions. Each dimension has its own sub-document describing how it is evaluated, what improvement looks like, and how retros track it.
+The plan is a ranked, living document. The model scores and prioritizes across seven dimensions. Each dimension has its own sub-document describing how it is evaluated, what improvement looks like, and how retros track it.
 
 | # | Dimension | Description |
 |---|---|---|
@@ -118,27 +119,64 @@ Every week, `retro` mode asks:
 
 The model uses that to score progress, update the plan, and surface what to focus on next week.
 
-Session summaries are written to `sessions/` so there is a running record of where you started and where you are.
+Session summaries are saved to Firestore so there is a running record of where you started and where you are.
 
 ---
 
 ## LLM Configuration
 
-`be-an-ant` works with any of the following providers. Set your preferred model via environment variable or a config file at `~/.be-an-ant/config.json`.
+`be-an-ant` supports Anthropic and Google as LLM providers. You choose during `ant config`. The model can be overridden by adding `"model": "<model-id>"` to `~/.be-an-ant/config.json`.
 
-| Provider | Models supported | Env var |
+| Provider | Default model | Fast alternative |
 |---|---|---|
-| Anthropic (default) | claude-opus-4, claude-sonnet-4 | `ANTHROPIC_API_KEY` |
-| OpenAI | gpt-4o, gpt-4o-mini | `OPENAI_API_KEY` |
-| Google | gemini-2.0-flash, gemini-1.5-pro | `GOOGLE_API_KEY` |
-
-If no model is specified, the tool defaults to Claude.
+| `anthropic` | `claude-opus-4-6` | `claude-sonnet-4-6` |
+| `google` | `gemini-2.5-flash` | `gemini-2.0-flash` |
 
 ---
 
-## Initial Setup
+## Installation
 
-Before your first session, collect the following. You will be asked about all of it during intake:
+Requires Node.js 18 or later.
+
+```bash
+git clone https://github.com/zhiyi-zhang-duke/be-an-ant.git
+cd be-an-ant
+npm install
+npm run build
+npm link          # makes `ant` available globally
+```
+
+---
+
+## Setup
+
+### 1. Firebase
+
+`be-an-ant` stores all session data in Firebase Firestore. You need a Firebase project and a service account before you can use the tool.
+
+Full step-by-step instructions: [`docs/firebase.md`](docs/firebase.md)
+
+The short version:
+1. Create a project at [console.firebase.google.com](https://console.firebase.google.com)
+2. Enable Firestore in Native mode
+3. Generate a service account key (Project Settings → Service Accounts → Generate new private key)
+4. Keep the downloaded JSON — you will paste three values from it into `ant config`
+
+### 2. Configure the CLI
+
+```bash
+ant config
+```
+
+This prompts for:
+- Your LLM provider choice and API key (Anthropic: [console.anthropic.com](https://console.anthropic.com) / Google: [aistudio.google.com](https://aistudio.google.com))
+- Firebase project ID, service account email, and private key (from the JSON downloaded above)
+
+Credentials are saved to `~/.be-an-ant/config.json` and never written to the database.
+
+### 3. Before your first session
+
+Collect the following — you will be asked about all of it during `ant intake`:
 
 - Your current job title and a plain-language description of what you do
 - The Anthropic role(s) you are targeting (be specific if possible)

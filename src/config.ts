@@ -56,6 +56,10 @@ export async function promptConfig(): Promise<Config> {
     : 'Gemini API key (aistudio.google.com): '
   const apiKey = await ask(apiKeyLabel)
 
+  const defaultModel = provider === 'anthropic' ? 'claude-opus-4-6' : 'gemini-2.5-flash'
+  const modelInput = await ask(`Model (default: ${defaultModel}): `)
+  const model = modelInput || defaultModel
+
   console.log('\nFirebase service account credentials (from Firebase Console → Project Settings → Service Accounts):')
   const projectId = await ask('Firebase project ID: ')
   const clientEmail = await ask('Service account client email: ')
@@ -65,5 +69,5 @@ export async function promptConfig(): Promise<Config> {
 
   rl.close()
 
-  return { provider, apiKey, firebase: { projectId, clientEmail, privateKey } }
+  return { provider, apiKey, model, firebase: { projectId, clientEmail, privateKey } }
 }

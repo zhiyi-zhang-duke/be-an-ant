@@ -4,7 +4,7 @@ import { requireConfig } from './config'
 
 const DEFAULT_MODELS: Record<string, string> = {
   anthropic: 'claude-opus-4-6',
-  google: 'gemini-2.0-flash',
+  google: 'gemini-2.5-flash',
 }
 
 export interface Message {

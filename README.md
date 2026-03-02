@@ -130,7 +130,7 @@ Session summaries are saved to Firestore so there is a running record of where y
 | Provider | Default model | Fast alternative |
 |---|---|---|
 | `anthropic` | `claude-opus-4-6` | `claude-sonnet-4-6` |
-| `google` | `gemini-2.0-flash` | `gemini-2.5-flash` |
+| `google` | `gemini-2.5-flash` | `gemini-2.0-flash` |
 
 ---
 

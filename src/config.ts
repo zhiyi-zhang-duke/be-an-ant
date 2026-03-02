@@ -45,9 +45,9 @@ export async function promptConfig(): Promise<Config> {
     new Promise(resolve => rl.question(q, answer => resolve(answer.trim())))
 
   console.log('\nbe-an-ant setup\n')
-  console.log('You need an Anthropic API key and a Firebase project (for data storage).\n')
+  console.log('You need a Gemini API key and a Firebase project (for data storage).\n')
 
-  const apiKey = await ask('Anthropic API key: ')
+  const apiKey = await ask('Gemini API key: ')
 
   console.log('\nFirebase service account credentials (from Firebase Console → Project Settings → Service Accounts):')
   const projectId = await ask('Firebase project ID: ')

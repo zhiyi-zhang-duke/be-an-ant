@@ -74,7 +74,7 @@ For the private key: paste the full value including the `-----BEGIN RSA PRIVATE 
 ant config
 ```
 
-This prompts for your Anthropic API key and the three Firebase values above. Credentials are saved to `~/.be-an-ant/config.json` on your local machine and are never written to Firestore.
+This prompts for your Gemini API key and the three Firebase values above. Credentials are saved to `~/.be-an-ant/config.json` on your local machine and are never written to Firestore.
 
 ---
 

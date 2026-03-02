@@ -1,24 +1,24 @@
-import Anthropic from '@anthropic-ai/sdk'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { requireConfig } from './config'
 
-const DEFAULT_MODEL = 'claude-opus-4-6'
+const DEFAULT_MODEL = 'gemini-1.5-pro'
 
 export interface Message {
   role: 'user' | 'assistant'
   content: string
 }
 
-let _client: Anthropic | null = null
+let _genAI: GoogleGenerativeAI | null = null
 
-function client(): Anthropic {
-  if (!_client) {
+function genAI(): GoogleGenerativeAI {
+  if (!_genAI) {
     const config = requireConfig()
-    _client = new Anthropic({ apiKey: config.apiKey })
+    _genAI = new GoogleGenerativeAI(config.apiKey)
   }
-  return _client
+  return _genAI
 }
 
-function model(): string {
+function modelName(): string {
   const config = requireConfig()
   return config.model ?? DEFAULT_MODEL
 }
@@ -27,30 +27,30 @@ function model(): string {
  * Single-turn call. Returns the assistant text response.
  */
 export async function llm(systemPrompt: string, userMessage: string): Promise<string> {
-  const response = await client().messages.create({
-    model: model(),
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages: [{ role: 'user', content: userMessage }],
+  const model = genAI().getGenerativeModel({
+    model: modelName(),
+    systemInstruction: systemPrompt,
   })
-
-  const block = response.content[0]
-  if (block.type !== 'text') throw new Error('Unexpected response type from LLM')
-  return block.text
+  const result = await model.generateContent(userMessage)
+  return result.response.text()
 }
 
 /**
  * Multi-turn call. Takes a conversation history and returns the next assistant message.
  */
 export async function llmChat(systemPrompt: string, messages: Message[]): Promise<string> {
-  const response = await client().messages.create({
-    model: model(),
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages,
+  const model = genAI().getGenerativeModel({
+    model: modelName(),
+    systemInstruction: systemPrompt,
   })
 
-  const block = response.content[0]
-  if (block.type !== 'text') throw new Error('Unexpected response type from LLM')
-  return block.text
+  const history = messages.slice(0, -1).map(m => ({
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }],
+  }))
+
+  const chat = model.startChat({ history })
+  const last = messages[messages.length - 1]
+  const result = await chat.sendMessage(last.content)
+  return result.response.text()
 }

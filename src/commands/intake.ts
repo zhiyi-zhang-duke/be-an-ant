@@ -5,12 +5,7 @@ import { intakeSystemPrompt } from '../prompts'
 import { ProfileSchema } from '../schema'
 import { getProfile, saveProfile, addSession } from '../db'
 import { getConfig, promptConfig, saveConfig } from '../config'
-
-function extractTag(text: string, tag: string): string | null {
-  const re = new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, 'i')
-  const match = text.match(re)
-  return match ? match[1].trim() : null
-}
+import { extractTag } from '../util'
 
 export function registerIntake(program: Command): void {
   program

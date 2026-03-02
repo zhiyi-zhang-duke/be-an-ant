@@ -3,13 +3,9 @@ import readline from 'readline'
 import { llmChat, Message } from '../llm'
 import { retroSystemPrompt } from '../prompts'
 import { PlanSchema } from '../schema'
+import { z } from 'zod'
 import { getProfile, getPlan, savePlan, addSession } from '../db'
-
-function extractTag(text: string, tag: string): string | null {
-  const re = new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`, 'i')
-  const match = text.match(re)
-  return match ? match[1].trim() : null
-}
+import { extractTag } from '../util'
 
 export function registerRetro(program: Command): void {
   program
@@ -78,7 +74,7 @@ export function registerRetro(program: Command): void {
           const changesJson = extractTag(response, 'changes')
           if (changesJson) {
             try {
-              changes = JSON.parse(changesJson)
+              changes = z.array(z.string()).parse(JSON.parse(changesJson))
             } catch {
               changes = []
             }

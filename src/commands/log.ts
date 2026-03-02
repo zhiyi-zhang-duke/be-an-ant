@@ -32,5 +32,6 @@ export function registerLog(program: Command): void {
       }
 
       console.log('\n' + '─'.repeat(60) + '\n')
+      process.exit(0)
     })
 }

@@ -103,5 +103,6 @@ export function registerIntake(program: Command): void {
       console.log('\n' + '─'.repeat(60))
       console.log('\nIntake complete. Profile saved.')
       console.log('\nNext step: run `ant plan` to generate your action plan.\n')
+      process.exit(0)
     })
 }

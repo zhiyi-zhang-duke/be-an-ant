@@ -12,19 +12,18 @@ export interface Message {
   content: string
 }
 
-function resolveModel(): { provider: 'anthropic' | 'google'; model: string } {
+function resolveModel() {
   const config = requireConfig()
   const provider = config.provider ?? 'google'
   const model = config.model ?? DEFAULT_MODELS[provider]
-  return { provider, model }
+  return { provider, model, config }
 }
 
 /**
  * Single-turn call. Returns the assistant text response.
  */
 export async function llm(systemPrompt: string, userMessage: string): Promise<string> {
-  const { provider, model } = resolveModel()
-  const config = requireConfig()
+  const { provider, model, config } = resolveModel()
 
   if (provider === 'anthropic') {
     const client = new Anthropic({ apiKey: config.apiKey })
@@ -49,8 +48,7 @@ export async function llm(systemPrompt: string, userMessage: string): Promise<st
  * Multi-turn call. Takes a conversation history and returns the next assistant message.
  */
 export async function llmChat(systemPrompt: string, messages: Message[]): Promise<string> {
-  const { provider, model } = resolveModel()
-  const config = requireConfig()
+  const { provider, model, config } = resolveModel()
 
   if (provider === 'anthropic') {
     const client = new Anthropic({ apiKey: config.apiKey })

@@ -20,4 +20,7 @@ registerPlan(program)
 registerRetro(program)
 registerLog(program)
 
-program.parse()
+program.parseAsync().catch(err => {
+  console.error(err instanceof Error ? err.message : err)
+  process.exit(1)
+})

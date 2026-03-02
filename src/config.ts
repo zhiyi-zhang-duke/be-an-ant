@@ -49,7 +49,7 @@ export async function promptConfig(): Promise<Config> {
   console.log('Supported providers: anthropic, google\n')
 
   const providerInput = await ask('Provider [anthropic/google] (default: google): ')
-  const provider: 'anthropic' | 'google' = providerInput === 'anthropic' ? 'anthropic' : 'google'
+  const provider: 'anthropic' | 'google' = providerInput.toLowerCase() === 'anthropic' ? 'anthropic' : 'google'
 
   const apiKeyLabel = provider === 'anthropic'
     ? 'Anthropic API key (console.anthropic.com): '

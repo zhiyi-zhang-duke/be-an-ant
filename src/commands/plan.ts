@@ -75,5 +75,6 @@ export function registerPlan(program: Command): void {
 
       console.log('─'.repeat(60))
       console.log('\nPlan saved. Run `ant retro` weekly to update it.\n')
+      process.exit(0)
     })
 }

@@ -119,5 +119,6 @@ export function registerRetro(program: Command): void {
         highActions.forEach(a => console.log(`     → ${a.text}`))
       })
       console.log()
+      process.exit(0)
     })
 }

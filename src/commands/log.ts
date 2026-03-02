@@ -16,7 +16,7 @@ export function registerLog(program: Command): void {
 
       if (!sessions.length) {
         console.log('No sessions yet. Run `ant intake` to get started.')
-        return
+        process.exit(0)
       }
 
       console.log('\nSESSION HISTORY\n')

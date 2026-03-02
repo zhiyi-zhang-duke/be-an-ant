@@ -74,6 +74,9 @@ export function registerIntake(program: Command): void {
           // Interview complete — parse and save
           try {
             const parsed = JSON.parse(profileJson)
+            const now = new Date().toISOString()
+            parsed.createdAt = now
+            parsed.updatedAt = now
             profile = ProfileSchema.parse(parsed)
           } catch (err) {
             console.error('\nFailed to parse profile from LLM response.')

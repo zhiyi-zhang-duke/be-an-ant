@@ -34,6 +34,9 @@ export function registerPlan(program: Command): void {
       let plan
       try {
         const parsed = JSON.parse(planJson)
+        const now = new Date().toISOString()
+        parsed.generatedAt = now
+        parsed.updatedAt = now
         plan = PlanSchema.parse(parsed)
       } catch (err) {
         console.error('Failed to parse plan from LLM response.')

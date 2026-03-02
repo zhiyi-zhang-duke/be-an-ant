@@ -65,6 +65,8 @@ export function registerRetro(program: Command): void {
         if (planJson) {
           try {
             const parsed = JSON.parse(planJson)
+            parsed.generatedAt = plan.generatedAt
+            parsed.updatedAt = new Date().toISOString()
             updatedPlan = PlanSchema.parse(parsed)
           } catch (err) {
             console.error('\nFailed to parse updated plan from LLM response.')

@@ -40,9 +40,7 @@ Interview style:
     "skills": { "strong": string[], "gaps": string[] },
     "constraints": { "hoursPerWeek": number, "monthlyBudget": number },
     "credentials": string[],
-    "links": { "github"?: string, "linkedin"?: string, "writing"?: string[] },
-    "createdAt": "<ISO timestamp>",
-    "updatedAt": "<ISO timestamp>"
+    "links": { "github"?: string, "linkedin"?: string, "writing"?: string[] }
   }
 
 Do not include anything outside the <profile>...</profile> block in your final message.`
@@ -66,9 +64,7 @@ The JSON must conform to this exact shape:
         { "text": string, "priority": "high" | "medium" | "low" }
       ]
     }
-  ],
-  "generatedAt": "<ISO timestamp>",
-  "updatedAt": "<ISO timestamp>"
+  ]
 }
 
 Rules:

@@ -47,6 +47,8 @@ export function registerRetro(program: Command): void {
       while (true) {
         const userInput = await askUser()
 
+        if (!userInput) continue
+
         if (userInput.toLowerCase() === 'quit') {
           console.log('\nRetro cancelled. Plan unchanged.')
           rl.close()

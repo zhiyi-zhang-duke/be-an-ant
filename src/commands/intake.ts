@@ -55,6 +55,8 @@ export function registerIntake(program: Command): void {
       while (true) {
         const userInput = await askUser()
 
+        if (!userInput) continue
+
         if (userInput.toLowerCase() === 'quit') {
           console.log('\nIntake cancelled.')
           rl.close()

@@ -10,7 +10,7 @@ The name comes from the idea that ants don't overestimate the distance between w
 
 `be-an-ant` is a CLI tool that uses an AI model as a structured career coach. It runs intake interviews, builds a prioritized action plan across every relevant dimension of career growth, and holds weekly retrospectives to track progress and recalibrate.
 
-It uses Gemini (Google) as the AI backend.
+It supports Anthropic (Claude) and Google (Gemini) as AI backends. You choose during `ant config`.
 
 It is not motivational. It is operational.
 
@@ -48,7 +48,7 @@ These run the main loop of the tool.
 
 | Command | Description |
 |---|---|
-| `ant config` | One-time setup — saves your Gemini API key and Firebase credentials |
+| `ant config` | One-time setup — choose your LLM provider, save your API key and Firebase credentials |
 | `ant intake` | One-time structured interview to build your baseline profile |
 | `ant plan` | Generates or updates a ranked action plan based on your profile |
 | `ant retro` | Weekly retrospective — reviews progress, adjusts priorities |
@@ -125,12 +125,12 @@ Session summaries are saved to Firestore so there is a running record of where y
 
 ## LLM Configuration
 
-`be-an-ant` uses Gemini via the Google AI API. You set your API key during `ant config`. The model can be overridden in `~/.be-an-ant/config.json`.
+`be-an-ant` supports Anthropic and Google as LLM providers. You choose during `ant config`. The model can be overridden by adding `"model": "<model-id>"` to `~/.be-an-ant/config.json`.
 
-| Model | Description |
-|---|---|
-| `gemini-1.5-pro` (default) | Most capable — best for intake and plan generation |
-| `gemini-1.5-flash` | Faster — fine for retros and dimension commands |
+| Provider | Default model | Fast alternative |
+|---|---|---|
+| `anthropic` | `claude-opus-4-6` | `claude-sonnet-4-6` |
+| `google` | `gemini-1.5-pro` | `gemini-1.5-flash` |
 
 ---
 
@@ -169,7 +169,7 @@ ant config
 ```
 
 This prompts for:
-- Your Gemini API key (from [aistudio.google.com](https://aistudio.google.com))
+- Your LLM provider choice and API key (Anthropic: [console.anthropic.com](https://console.anthropic.com) / Google: [aistudio.google.com](https://aistudio.google.com))
 - Firebase project ID, service account email, and private key (from the JSON downloaded above)
 
 Credentials are saved to `~/.be-an-ant/config.json` and never written to the database.

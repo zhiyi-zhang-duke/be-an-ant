@@ -4,6 +4,7 @@ import os from 'os'
 import readline from 'readline'
 
 export interface Config {
+  provider: 'anthropic' | 'google'
   apiKey: string
   firebase: {
     projectId: string
@@ -45,9 +46,15 @@ export async function promptConfig(): Promise<Config> {
     new Promise(resolve => rl.question(q, answer => resolve(answer.trim())))
 
   console.log('\nbe-an-ant setup\n')
-  console.log('You need a Gemini API key and a Firebase project (for data storage).\n')
+  console.log('Supported providers: anthropic, google\n')
 
-  const apiKey = await ask('Gemini API key: ')
+  const providerInput = await ask('Provider [anthropic/google] (default: google): ')
+  const provider: 'anthropic' | 'google' = providerInput === 'anthropic' ? 'anthropic' : 'google'
+
+  const apiKeyLabel = provider === 'anthropic'
+    ? 'Anthropic API key (console.anthropic.com): '
+    : 'Gemini API key (aistudio.google.com): '
+  const apiKey = await ask(apiKeyLabel)
 
   console.log('\nFirebase service account credentials (from Firebase Console → Project Settings → Service Accounts):')
   const projectId = await ask('Firebase project ID: ')
@@ -58,5 +65,5 @@ export async function promptConfig(): Promise<Config> {
 
   rl.close()
 
-  return { apiKey, firebase: { projectId, clientEmail, privateKey } }
+  return { provider, apiKey, firebase: { projectId, clientEmail, privateKey } }
 }
